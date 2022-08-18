@@ -1,0 +1,36 @@
+.wrapper {
+    min-width: 100px;
+    padding: 8px 30px;
+    background-color: #fff;
+    border: 1px solid rgba(22, 24, 35, 0.12);
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    &.primary {
+        background-color: var(--cl-primary);
+        color: #fff;
+        border: 0;
+        &:hover {
+            background-color: rgba(254, 44, 85, 0.7);
+        }
+    }
+    &.outline {
+        border: 0;
+    }
+    &.upload {
+        &:hover {
+            background-color: rgba(22, 24, 35, 0.03);
+        }
+    }
+    &:not(:last-child) {
+        margin-right: 10px;
+    }
+
+    .icon + .title,
+    .title + .icon {
+        margin-left: 10px;
+    }
+}
