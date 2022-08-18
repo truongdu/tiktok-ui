@@ -1,0 +1,45 @@
+.wrapper {
+    padding: 7px 16px;
+    cursor: pointer;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+}
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
+    flex-shrink: 0;
+    margin-right: 12px;
+}
+.info {
+    .name {
+        font-size: 16px;
+        line-height: 22px;
+        font-weight: 600;
+        overflow: hidden;
+        text-overflow: hidden;
+        white-space: nowrap;
+        margin: 0;
+        svg {
+            color: rgb(32, 213, 236);
+            margin-left: 5px;
+            font-size: 14px;
+        }
+    }
+    .last-name {
+        margin: 0;
+        font-size: 14px;
+        line-height: 20px;
+        color: rgba(22, 24, 35, 0.5);
+        font-weight: 400;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
