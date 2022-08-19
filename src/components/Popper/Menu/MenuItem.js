@@ -1,12 +1,15 @@
 import Button from '../../Button';
-function MenuItems({ data, className }) {
-    return data.map((item, index) => {
-        return (
-            <Button className={className} key={index} iconLeft={item.icon} outline="fale" to={item.to}>
-                {item.title}
-            </Button>
-        );
-    });
+import classNames from 'classnames/bind';
+import styles from './Menu.module.scss';
+
+const cx = classNames.bind(styles);
+
+function MenuItems({ data, className, onClick }) {
+    return (
+        <Button className={cx('option-btn')} iconLeft={data.icon} outline="fale" to={data.to} onClick={onClick}>
+            {data.title}
+        </Button>
+    );
 }
 
 export default MenuItems;

@@ -4,3 +4,27 @@
 .popper-option {
     padding: 8px 0;
 }
+
+// Language Menu
+.menu-language {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 0;
+    text-align: center;
+}
+.menu-icon {
+    display: block;
+    background: none;
+    border: 0;
+    color: #000;
+    position: absolute;
+    left: 17px;
+    font-size: 15px;
+}
+.menu-title {
+    font-size: 1.6rem;
+    color: rgba(22, 24, 35, 1);
+    display: inline-block;
+    font-weight: 400;
+}

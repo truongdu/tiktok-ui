@@ -20,16 +20,17 @@ import Menu from '../../../Popper/Menu';
 
 import styles from './Header.module.scss';
 import images from '../../../../assets/images';
+import MenuLanguage from '../../../Popper/Menu/MenuLanguage';
 
 const cx = classNames.bind(styles);
 
 function Header() {
-    const [searchResult, setSearchResult] = useState([1]);
-    useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([1, 2, 3]);
-        }, 0);
-    }, []);
+    const [searchResult, setSearchResult] = useState([]);
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         setSearchResult([1, 2, 3]);
+    //     }, 0);
+    // }, []);
 
     const [searchKey, setSearchKey] = useState();
     const searchClick = (e) => {
@@ -37,7 +38,24 @@ function Header() {
     };
 
     const MENU_ITEMS = [
-        { icon: <FontAwesomeIcon icon={faEarthAmericas}></FontAwesomeIcon>, title: 'English' },
+        {
+            icon: <FontAwesomeIcon icon={faEarthAmericas}></FontAwesomeIcon>,
+            title: 'English',
+            children: [
+                {
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+                {
+                    code: 'en',
+                    title: 'Tiếng Anh',
+                },
+                {
+                    code: 'jp',
+                    title: '日本',
+                },
+            ],
+        },
         { icon: <FontAwesomeIcon icon={faCircleInfo}></FontAwesomeIcon>, title: 'Feedback and help', to: 'feedback' },
         { icon: <FontAwesomeIcon icon={faKeyboard}></FontAwesomeIcon>, title: 'Keyboard shortcut' },
     ];
