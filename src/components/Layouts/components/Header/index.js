@@ -1,13 +1,23 @@
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faSpinner, faMagnifyingGlass, faPlus } from '@fortawesome/free-solid-svg-icons';
+import {
+    faCircleXmark,
+    faSpinner,
+    faMagnifyingGlass,
+    faPlus,
+    faEllipsisVertical,
+    faEarthAmericas,
+    faCircleInfo,
+    faKeyboard,
+} from '@fortawesome/free-solid-svg-icons';
 
 import Tippy from '@tippyjs/react/headless';
-
 import Button from '../../../Button';
 import { Wrapper as PopperWrapper } from '../../../Popper';
 import AccountItem from '../../../Popper/AccountItem';
+import Menu from '../../../Popper/Menu';
+
 import styles from './Header.module.scss';
 import images from '../../../../assets/images';
 
@@ -18,8 +28,19 @@ function Header() {
     useEffect(() => {
         setTimeout(() => {
             setSearchResult([1, 2, 3]);
-        }, 3000);
+        }, 0);
     }, []);
+
+    const [searchKey, setSearchKey] = useState();
+    const searchClick = (e) => {
+        setSearchKey(e.target.value);
+    };
+
+    const MENU_ITEMS = [
+        { icon: <FontAwesomeIcon icon={faEarthAmericas}></FontAwesomeIcon>, title: 'English' },
+        { icon: <FontAwesomeIcon icon={faCircleInfo}></FontAwesomeIcon>, title: 'Feedback and help', to: 'feedback' },
+        { icon: <FontAwesomeIcon icon={faKeyboard}></FontAwesomeIcon>, title: 'Keyboard shortcut' },
+    ];
 
     return (
         <header>
@@ -34,7 +55,10 @@ function Header() {
                         render={(attrs) => (
                             <div className={cx('header-search-box')} tabIndex="-1" {...attrs}>
                                 <PopperWrapper>
-                                    <h4 className={cx('header-search-tt')}>search result</h4>
+                                    <h4 className={cx('header-search-tt')}>Search result</h4>
+                                    <p>{searchKey}</p>
+
+                                    <h4 className={cx('header-search-tt')}>User</h4>
                                     <AccountItem></AccountItem>
                                     <AccountItem></AccountItem>
                                     <AccountItem></AccountItem>
@@ -45,7 +69,12 @@ function Header() {
                         )}
                     >
                         <div className={cx('header-search')}>
-                            <input type="text" placeholder="Search accounts and videos" spellCheck={false} />
+                            <input
+                                type="text"
+                                placeholder="Search accounts and videos"
+                                spellCheck={false}
+                                onChange={searchClick}
+                            />
                             <button className={cx('search-ic', 'clear')}>
                                 <FontAwesomeIcon icon={faCircleXmark}></FontAwesomeIcon>
                             </button>
@@ -58,11 +87,17 @@ function Header() {
                             </button>
                         </div>
                     </Tippy>
-                    <div className={cx('header-login')}>
+                    <div className={cx('header-option')}>
                         <Button iconLeft={<FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>}>Upload</Button>
                         <Button primary className={cx('button-cus')}>
                             Login
                         </Button>
+
+                        <Menu items={MENU_ITEMS}>
+                            <div className={cx('more-btn')}>
+                                <FontAwesomeIcon icon={faEllipsisVertical}></FontAwesomeIcon>
+                            </div>
+                        </Menu>
                     </div>
                 </div>
             </div>

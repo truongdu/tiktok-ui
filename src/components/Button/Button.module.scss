@@ -8,6 +8,8 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    color: #000;
+    text-decoration: none;
     cursor: pointer;
     &.primary {
         background-color: var(--cl-primary);
@@ -28,9 +30,21 @@
     &:not(:last-child) {
         margin-right: 10px;
     }
-
+    .icon {
+        display: inline-block;
+        width: 20px;
+    }
     .icon + .title,
     .title + .icon {
         margin-left: 10px;
+    }
+}
+.option-btn {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 10px 16px;
+    border-radius: 0;
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.03);
     }
 }
