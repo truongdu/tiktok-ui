@@ -41,24 +41,40 @@ function Header() {
         {
             icon: <FontAwesomeIcon icon={faEarthAmericas}></FontAwesomeIcon>,
             title: 'English',
-            children: [
-                {
-                    code: 'vi',
-                    title: 'Tiếng Việt',
-                },
-                {
-                    code: 'en',
-                    title: 'Tiếng Anh',
-                },
-                {
-                    code: 'jp',
-                    title: '日本',
-                },
-            ],
+            children: {
+                title: 'Language',
+                data: [
+                    {
+                        type: 'language',
+                        code: 'vi',
+                        title: 'Tiếng Việt',
+                    },
+                    {
+                        type: 'language',
+                        code: 'en',
+                        title: 'Tiếng Anh',
+                    },
+                    {
+                        type: 'language',
+                        code: 'jp',
+                        title: '日本',
+                    },
+                ],
+            },
         },
         { icon: <FontAwesomeIcon icon={faCircleInfo}></FontAwesomeIcon>, title: 'Feedback and help', to: 'feedback' },
         { icon: <FontAwesomeIcon icon={faKeyboard}></FontAwesomeIcon>, title: 'Keyboard shortcut' },
     ];
+    const handleMenuItem = (item) => {
+        console.log(item);
+        switch (item.type) {
+            case 'language':
+                // handle fn
+                break;
+            default:
+            // else
+        }
+    };
 
     return (
         <header>
@@ -111,7 +127,7 @@ function Header() {
                             Login
                         </Button>
 
-                        <Menu items={MENU_ITEMS}>
+                        <Menu items={MENU_ITEMS} onChange={handleMenuItem}>
                             <div className={cx('more-btn')}>
                                 <FontAwesomeIcon icon={faEllipsisVertical}></FontAwesomeIcon>
                             </div>

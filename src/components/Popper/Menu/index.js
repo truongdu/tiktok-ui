@@ -7,15 +7,15 @@ import MenuLanguage from './MenuLanguage';
 import { useState } from 'react';
 
 const cx = classNames.bind(styles);
+const defaultFn = () => {};
 
-function Menu({ children, items = [] }) {
+function Menu({ children, items = [], onChange = defaultFn }) {
     const [history, setHistory] = useState([{ data: items }]);
-
     const current = history[history.length - 1];
-
     const renderItems = () => {
         return current.data.map((item, index) => {
             const isParent = !!item.children;
+
             return (
                 <MenuItems
                     key={index}
@@ -23,6 +23,8 @@ function Menu({ children, items = [] }) {
                     onClick={() => {
                         if (isParent) {
                             setHistory((prev) => [...prev, item.children]);
+                        } else {
+                            onChange(item);
                         }
                     }}
                 >
@@ -34,14 +36,23 @@ function Menu({ children, items = [] }) {
 
     return (
         <Tippy
-            visible
+            // visible
             interactive
             delay={[0, 1000]}
-            placement="top-end"
+            placement="bottom-end"
             render={(attrs) => (
                 <div className={cx('content')} tabIndex="-1" {...attrs}>
                     <PopperWrapper className={cx('popper-option')}>
-                        <MenuLanguage>Language</MenuLanguage>
+                        {history.length > 1 && (
+                            <MenuLanguage
+                                onBack={() => {
+                                    setHistory((prev) => prev.slice(0, prev.length - 1));
+                                }}
+                            >
+                                {current.title}
+                            </MenuLanguage>
+                        )}
+
                         {renderItems()}
                     </PopperWrapper>
                 </div>
