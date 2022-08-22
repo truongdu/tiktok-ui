@@ -4,6 +4,8 @@
     display: flex;
     -webkit-box-align: center;
     align-items: center;
+    text-decoration: none;
+    color: #000;
     &:hover {
         background-color: rgba(22, 24, 35, 0.03);
     }
